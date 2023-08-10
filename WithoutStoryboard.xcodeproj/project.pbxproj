@@ -12,6 +12,11 @@
 		BD10C9572A7C0A260034025F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD10C9562A7C0A260034025F /* LoginViewController.swift */; };
 		BD10C95C2A7C0A270034025F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD10C95B2A7C0A270034025F /* Assets.xcassets */; };
 		BD10C95F2A7C0A270034025F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD10C95D2A7C0A270034025F /* LaunchScreen.storyboard */; };
+		BD717A502A8512B9004B1784 /* FriensdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A4F2A8512B9004B1784 /* FriensdViewController.swift */; };
+		BD717A522A851300004B1784 /* CustomTableViewCellFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A512A851300004B1784 /* CustomTableViewCellFriends.swift */; };
+		BD717A542A852041004B1784 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A532A852041004B1784 /* GroupViewController.swift */; };
+		BD717A562A85310D004B1784 /* CustomTableViewCellGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A552A85310D004B1784 /* CustomTableViewCellGroups.swift */; };
+		BD717A582A853707004B1784 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A572A853707004B1784 /* PhotosViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		BD10C95B2A7C0A270034025F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD10C95E2A7C0A270034025F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD10C9602A7C0A270034025F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD717A4F2A8512B9004B1784 /* FriensdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriensdViewController.swift; sourceTree = "<group>"; };
+		BD717A512A851300004B1784 /* CustomTableViewCellFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellFriends.swift; sourceTree = "<group>"; };
+		BD717A532A852041004B1784 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		BD717A552A85310D004B1784 /* CustomTableViewCellGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellGroups.swift; sourceTree = "<group>"; };
+		BD717A572A853707004B1784 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +70,11 @@
 				BD10C95B2A7C0A270034025F /* Assets.xcassets */,
 				BD10C95D2A7C0A270034025F /* LaunchScreen.storyboard */,
 				BD10C9602A7C0A270034025F /* Info.plist */,
+				BD717A4F2A8512B9004B1784 /* FriensdViewController.swift */,
+				BD717A532A852041004B1784 /* GroupViewController.swift */,
+				BD717A572A853707004B1784 /* PhotosViewController.swift */,
+				BD717A512A851300004B1784 /* CustomTableViewCellFriends.swift */,
+				BD717A552A85310D004B1784 /* CustomTableViewCellGroups.swift */,
 			);
 			path = WithoutStoryboard;
 			sourceTree = "<group>";
@@ -134,9 +149,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD717A542A852041004B1784 /* GroupViewController.swift in Sources */,
+				BD717A582A853707004B1784 /* PhotosViewController.swift in Sources */,
 				BD10C9572A7C0A260034025F /* LoginViewController.swift in Sources */,
+				BD717A522A851300004B1784 /* CustomTableViewCellFriends.swift in Sources */,
 				BD10C9532A7C0A260034025F /* AppDelegate.swift in Sources */,
 				BD10C9552A7C0A260034025F /* SceneDelegate.swift in Sources */,
+				BD717A562A85310D004B1784 /* CustomTableViewCellGroups.swift in Sources */,
+				BD717A502A8512B9004B1784 /* FriensdViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
