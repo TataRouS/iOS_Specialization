@@ -17,6 +17,8 @@
 		BD717A542A852041004B1784 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A532A852041004B1784 /* GroupViewController.swift */; };
 		BD717A562A85310D004B1784 /* CustomTableViewCellGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A552A85310D004B1784 /* CustomTableViewCellGroups.swift */; };
 		BD717A582A853707004B1784 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A572A853707004B1784 /* PhotosViewController.swift */; };
+		BD717A7A2A878EBB004B1784 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A792A878EBB004B1784 /* NetworkService.swift */; };
+		BD717A872A87B00A004B1784 /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A862A87B00A004B1784 /* PhotosModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		BD717A532A852041004B1784 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		BD717A552A85310D004B1784 /* CustomTableViewCellGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellGroups.swift; sourceTree = "<group>"; };
 		BD717A572A853707004B1784 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		BD717A792A878EBB004B1784 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		BD717A862A87B00A004B1784 /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +79,18 @@
 				BD717A572A853707004B1784 /* PhotosViewController.swift */,
 				BD717A512A851300004B1784 /* CustomTableViewCellFriends.swift */,
 				BD717A552A85310D004B1784 /* CustomTableViewCellGroups.swift */,
+				BD717A7B2A87A972004B1784 /* NetworkService */,
 			);
 			path = WithoutStoryboard;
+			sourceTree = "<group>";
+		};
+		BD717A7B2A87A972004B1784 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				BD717A792A878EBB004B1784 /* NetworkService.swift */,
+				BD717A862A87B00A004B1784 /* PhotosModel.swift */,
+			);
+			path = NetworkService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,8 +167,10 @@
 				BD717A582A853707004B1784 /* PhotosViewController.swift in Sources */,
 				BD10C9572A7C0A260034025F /* LoginViewController.swift in Sources */,
 				BD717A522A851300004B1784 /* CustomTableViewCellFriends.swift in Sources */,
+				BD717A7A2A878EBB004B1784 /* NetworkService.swift in Sources */,
 				BD10C9532A7C0A260034025F /* AppDelegate.swift in Sources */,
 				BD10C9552A7C0A260034025F /* SceneDelegate.swift in Sources */,
+				BD717A872A87B00A004B1784 /* PhotosModel.swift in Sources */,
 				BD717A562A85310D004B1784 /* CustomTableViewCellGroups.swift in Sources */,
 				BD717A502A8512B9004B1784 /* FriensdViewController.swift in Sources */,
 			);
