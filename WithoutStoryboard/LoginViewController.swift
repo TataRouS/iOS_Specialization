@@ -59,6 +59,8 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    
+    
     private func setupViews() {
         view.addSubview(imageView)
         view.addSubview(label)
@@ -114,10 +116,29 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .magenta
+        // Добавляем действие по клику на кнопку
+        button.addTarget(self, action: #selector(tap), for: .touchUpInside)
         // Do any additional setup after loading the view.
         setupViews()
     }
-
-
 }
-
+private extension LoginViewController {
+    @objc func tap() {
+        
+        let tabBarController = UITabBarController()
+        let friendController = UINavigationController(rootViewController: FriensdViewController())
+        let groupController = UINavigationController(rootViewController: GroupsViewController())
+        let photosController = UINavigationController(rootViewController: PhotosViewController())
+        
+        friendController.tabBarItem.title = "Friends"
+        groupController.tabBarItem.title = "Groups"
+        photosController.tabBarItem.title = "Photos"
+        
+        let controllers = [friendController, groupController, photosController]
+        for element in controllers{
+            element.tabBarItem.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 25.0, weight: .regular)], for: .normal)
+        }
+        tabBarController.viewControllers = controllers
+        navigationController?.pushViewController(tabBarController, animated: true)
+    }
+}
