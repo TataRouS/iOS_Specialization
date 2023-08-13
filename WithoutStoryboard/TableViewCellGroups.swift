@@ -8,8 +8,8 @@
 import UIKit
 
 final class TableViewCellGroups: UITableViewCell {
-    private var circle: UIView = {
-        let circle = UIView()
+    private var circle: UIImageView = {
+        let circle = UIImageView()
         circle.backgroundColor = .magenta
         circle.layer.cornerRadius = 25
         return circle

@@ -9,40 +9,40 @@ import UIKit
 import Foundation
 
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UICollectionViewController {
     
-    private var view1: UIView = {
-        let firstView = UIView()
+    private var view1: UIImageView = {
+        let firstView = UIImageView()
         firstView.backgroundColor =  .magenta
         return firstView
     }()
     
-    private var view2: UIView = {
-        let firstView = UIView()
+    private var view2: UIImageView = {
+        let firstView = UIImageView()
         firstView.backgroundColor =  .systemBlue
         return firstView
     }()
     
-    private var view3: UIView = {
-        let firstView = UIView()
+    private var view3: UIImageView = {
+        let firstView = UIImageView()
         firstView.backgroundColor =  .systemRed
         return firstView
     }()
     
-    private var view4: UIView = {
-        let firstView = UIView()
+    private var view4: UIImageView = {
+        let firstView = UIImageView()
         firstView.backgroundColor =  .darkGray
         return firstView
     }()
     
-    private var view5: UIView = {
-        let firstView = UIView()
+    private var view5: UIImageView = {
+        let firstView = UIImageView()
         firstView.backgroundColor =  .yellow
         return firstView
     }()
     
-    private var view6: UIView = {
-        let firstView = UIView()
+    private var view6: UIImageView = {
+        let firstView = UIImageView()
         firstView.backgroundColor =  .systemBrown
         return firstView
     }()
