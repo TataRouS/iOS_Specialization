@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CustomTableViewCellFriends: UITableViewCell {
+final class TableViewCellFriends: UITableViewCell {
     private var circle: UIView = {
         let circle = UIView()
         circle.backgroundColor = .magenta

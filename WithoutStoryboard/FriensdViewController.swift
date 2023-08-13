@@ -27,7 +27,7 @@ class FriensdViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        CustomTableViewCellFriends()
+        TableViewCellFriends()
     }
 }
 
