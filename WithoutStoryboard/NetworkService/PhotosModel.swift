@@ -9,14 +9,14 @@ import Foundation
 
 
 struct PhotosModel: Decodable {
+    
+    var response: Photos
+    
+}
 
-        var response: Photos
-        
-    }
-   
-    struct DataPhotos: Decodable {
-        var sizes: [Sizes]
-    }
+struct DataPhotos: Decodable {
+    var sizes: [Sizes]
+}
 
 struct Sizes: Decodable {
     var url: String
