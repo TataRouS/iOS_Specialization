@@ -2,12 +2,22 @@
 //  GroupsModel.swift
 //  WithoutStoryboard
 //
-//  Created by Nata Kuznetsova on 12.08.2023.
+//  Created by Nata Kuznetsova on 13.08.2023.
 //
 
 import Foundation
 
-struct GroupsModel: Codable {
-    var name
-    var surname
+struct GroupsModel: Decodable {
+
+        var response: Groups
+        
+    }
+   
+    struct DataGroups: Decodable {
+        var description: String?
+        var name: String
+    }
+
+struct Groups: Decodable {
+    var items: [DataGroups]
 }

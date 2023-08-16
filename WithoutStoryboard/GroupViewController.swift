@@ -9,13 +9,16 @@ import UIKit
 
 class GroupsViewController: UITableViewController {
     
+    private let networkService = NetworkService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Groups"
         view.backgroundColor = .white
         tableView.backgroundColor = .white
-//        navigationController?.navigationBar.tintColor = .black
-//        navigationController?.navigationBar.barTintColor = .white
+        //        navigationController?.navigationBar.tintColor = .black
+        //        navigationController?.navigationBar.barTintColor = .white
+        networkService.getGroups()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -23,7 +26,7 @@ class GroupsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       5
+        5
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
