@@ -23,7 +23,7 @@ class PhotosViewController: UICollectionViewController {
         
         collectionView.register(PhotoCell.self, forCellWithReuseIdentifier:
                                     Constants.Identifier.photoCellIdentifier)
-        networkService.getPhotos()
+  //      networkService.getPhotos()
     }
     
     

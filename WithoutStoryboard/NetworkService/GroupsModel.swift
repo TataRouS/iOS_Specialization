@@ -8,15 +8,15 @@
 import Foundation
 
 struct GroupsModel: Decodable {
+    
+    var response: Groups
+    
+}
 
-        var response: Groups
-        
-    }
-   
-    struct DataGroups: Decodable {
-        var description: String?
-        var name: String
-    }
+struct DataGroups: Decodable {
+    var description: String?
+    var name: String
+}
 
 struct Groups: Decodable {
     var items: [DataGroups]

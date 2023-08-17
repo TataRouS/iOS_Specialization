@@ -17,10 +17,15 @@ final class TableViewCellGroups: UITableViewCell {
     
     private var text1: UILabel = {
         let label = UILabel()
-        label.text = "Name"
+        //label.text = "Name"
         label.textColor = .black
         return label
     }()
+    
+    func setupTextGroups(group: DataGroups) {
+        let name = group.name
+        text1.text = "\(name)"
+    }
     
     private var text2: UILabel = {
         let label = UILabel()
@@ -66,6 +71,11 @@ final class TableViewCellGroups: UITableViewCell {
             text2.leadingAnchor.constraint(equalTo: circle.trailingAnchor, constant: 30),
             text2.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10)
         ])
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        text1.text = nil
     }
 }
 
