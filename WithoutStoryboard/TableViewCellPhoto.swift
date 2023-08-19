@@ -21,6 +21,20 @@ final class PhotoCell: UICollectionViewCell {
         
     }
     
+    
+    func updateCell (model: DataPhotos) {
+        DispatchQueue.global ().async {
+            if let url = URL(string: model.sizes.first?.url ?? ""), let data =
+                try? Data (contentsOf: url)
+            {
+                DispatchQueue.main.async {
+                    self.photoView.image = UIImage(data: data)
+                }
+            }
+        }
+    }
+    
+    
     private func setupViews () {
         addSubview (photoView)
         setupConstraints ()
@@ -28,6 +42,7 @@ final class PhotoCell: UICollectionViewCell {
     
     private func setupConstraints() {
         photoView.translatesAutoresizingMaskIntoConstraints=false
+        
         NSLayoutConstraint.activate([
             photoView.leadingAnchor.constraint(equalTo: leadingAnchor),
             photoView.trailingAnchor.constraint(equalTo: trailingAnchor),

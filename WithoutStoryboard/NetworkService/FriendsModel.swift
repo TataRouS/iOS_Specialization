@@ -15,11 +15,17 @@ struct FriendsModel: Decodable {
    
     struct DataFriend: Decodable {
         var nickname: String?
+        var firstName: String?
+        var lastName: String?
+        var online: Int?
         var avatar: String
         
         
         enum CodingKeys: String, CodingKey {
             case nickname
+            case firstName = "first_name"
+            case lastName = "last_name"
+            case online
             case avatar = "photo_50"
         }
     }
