@@ -24,7 +24,9 @@ final class TableViewCellGroups: UITableViewCell {
     
     func setupTextGroups(group: DataGroups) {
         let name = group.name
+        let description = group.description
         text1.text = "\(name)"
+        text2.text = "\(description)"
     }
     
     private var text2: UILabel = {

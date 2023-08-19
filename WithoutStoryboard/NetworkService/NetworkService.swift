@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol NetworkServiceDelegate: AnyObject {
-    func updateTable (models: GroupsModel)
-}
+//protocol NetworkServiceDelegate: AnyObject {
+////    func updateTable (models: GroupsModel)
+////}
 
 final class NetworkService {
     
@@ -18,12 +18,9 @@ final class NetworkService {
     static var token = ""
     static var userID = ""
     
-    func getFriends() {
+    func getFriends(completion: @escaping ([DataFriend]) -> Void ) {
         let url = URL(string: "https://api.vk.com/method/friends.get?fields=nickname,online,photo_50&access_token=\(NetworkService.token)&v=5.131")
         
-      
-//https://api.vk.com/method/friends.get?fields=nickname,online,photo_50&access_token=vk1.a.1_bsGrWkSRnJICQ5MwTstRAw8IfSGuDcCZ6MRXzXuqIh0dC1_mPInn4vZeNaLJsCfKQnoLZoWHpeYRaiYseExQL56BB3afyWiBbGdi7UAukaMb187FKrYrIpjudIdhyYQ6JYwSHOpXkWP-MKzga1ybPpJXkbblH0SZZzc7hiC1Pq5nuaeyFuwN6ki2wSTbG1QJBRfFAHW-0msHn-fA3x6A&v=5.131
-//        vk1.a.1_bsGrWkSRnJICQ5MwTstRAw8IfSGuDcCZ6MRXzXuqIh0dC1_mPInn4vZeNaLJsCfKQnoLZoWHpeYRaiYseExQL56BB3afyWiBbGdi7UAukaMb187FKrYrIpjudIdhyYQ6JYwSHOpXkWP-MKzga1ybPpJXkbblH0SZZzc7hiC1Pq5nuaeyFuwN6ki2wSTbG1QJBRfFAHW-0msHn-fA3x6A
         
         guard let url else {
             return
@@ -36,6 +33,7 @@ final class NetworkService {
             do {
                 let friendsList = try
                 JSONDecoder().decode(FriendsModel.self, from: data)
+                completion(friendsList.response.items)
                 print(friendsList)
             } catch {
                 print(error)
@@ -68,34 +66,24 @@ final class NetworkService {
         }.resume()
     }
     
-//    func getPhotos() {
-//        let url = URL(string: "https://api.vk.com/method/photos.get?fields=bdate&access_token=\(NetworkService.token)&v=5.131&album_id=profile")
-//        
-//        
-//        guard let url else {
-//            return
-//        }
-//        
-//        session.dataTask(with: url) { (data, _, error) in
-//            guard let data else {
-//                return
-//            }
-//            do {
-//                let imageURL = try
-//                JSONDecoder().decode(PhotosModel.self, from: data).url
-//                guard let imageURL = URL(string: imageURL) else {
-//                    return}
-//                session.dataTask(with: imageURL) { (data, _, error) in
-//                    guard let data, let image = UIImage(data: data) else {
-//                        return
-//                    }
-//                    DispatchQueue.main.async { () -> Void in
-//                        self.image = image
-//                    }
-//                }.resume()
-//                } catch {
-//                print(error)
-//            }
-//        }.resume()
-//    }
+    func getPhotos(completion: @escaping ([DataPhotos]) -> Void) {
+        guard let url = URL(string: "https://api.vk.com/method/photos.get?fields=bdate&access_token=\(NetworkService.token)&v=5.131&album_id=profile")
+        else {
+            return
+        }
+        
+        session.dataTask(with: url) { (data, _, error) in
+            guard let data else {
+                return
+            }
+            do {
+                let imageURL = try
+                JSONDecoder().decode(PhotosModel.self, from: data)
+                completion(imageURL.response.items)
+                    print(imageURL)
+                } catch {
+                print(error)
+            }
+        }.resume()
+    }
 }

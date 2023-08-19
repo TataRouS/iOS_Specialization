@@ -11,7 +11,7 @@ import Foundation
 
 class PhotosViewController: UICollectionViewController {
     private var networkService = NetworkService()
-    
+    private var models: [DataPhotos] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,21 +23,32 @@ class PhotosViewController: UICollectionViewController {
         
         collectionView.register(PhotoCell.self, forCellWithReuseIdentifier:
                                     Constants.Identifier.photoCellIdentifier)
-  //      networkService.getPhotos()
+        networkService.getPhotos { [weak self] imageURL in
+            self?.models = imageURL
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
+        }
     }
+  //      networkService.getPhotos()
+    
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        models.count
     }
     
     
     override func collectionView(_ collectionView:UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifier.photoCellIdentifier, for:
-                                    indexPath) as! PhotoCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifier.photoCellIdentifier, for: indexPath) as? PhotoCell else {
+            return UICollectionViewCell()
+        }
+        let model = models[indexPath.row]
+        cell.updateCell(model: model)
         return cell
     }
 }
+
 
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout

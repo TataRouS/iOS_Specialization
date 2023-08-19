@@ -17,7 +17,7 @@ struct FriendsModel: Decodable {
         var nickname: String?
         var firstName: String?
         var lastName: String?
-        var online: Int
+        var online: Int?
         var avatar: String
         
         

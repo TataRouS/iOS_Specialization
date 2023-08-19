@@ -17,8 +17,8 @@ class GroupsViewController: UITableViewController {
         title = "Groups"
         view.backgroundColor = .white
         tableView.backgroundColor = .white
-       // navigationController?.navigationBar.tintColor = .black
-      //  navigationController?.navigationBar.barTintColor = .white
+       navigationController?.navigationBar.tintColor = .black
+       navigationController?.navigationBar.barTintColor = .white
         // networkService.getGroups()
         //}
         
