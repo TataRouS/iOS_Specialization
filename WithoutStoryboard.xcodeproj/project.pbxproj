@@ -25,7 +25,6 @@
 		BD717A8F2A8A83A7004B1784 /* TableViewCellPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A8E2A8A83A7004B1784 /* TableViewCellPhoto.swift */; };
 		BD717AEE2A915A9E004B1784 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717AED2A915A9E004B1784 /* ProfileViewController.swift */; };
 		BD717AF02A937587004B1784 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717AEF2A937587004B1784 /* ProfileModel.swift */; };
-		BD717AF62A937FDE004B1784 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717AF52A937FDE004B1784 /* ProfileCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +48,6 @@
 		BD717A8E2A8A83A7004B1784 /* TableViewCellPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellPhoto.swift; sourceTree = "<group>"; };
 		BD717AED2A915A9E004B1784 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BD717AEF2A937587004B1784 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
-		BD717AF52A937FDE004B1784 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				BD717AED2A915A9E004B1784 /* ProfileViewController.swift */,
-				BD717AF52A937FDE004B1784 /* ProfileCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -216,7 +213,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD717AF62A937FDE004B1784 /* ProfileCell.swift in Sources */,
 				BD717A8F2A8A83A7004B1784 /* TableViewCellPhoto.swift in Sources */,
 				BD717A542A852041004B1784 /* GroupViewController.swift in Sources */,
 				BD717A892A892F3F004B1784 /* GroupsModel.swift in Sources */,

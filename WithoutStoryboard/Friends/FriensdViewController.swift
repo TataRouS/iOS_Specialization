@@ -32,10 +32,17 @@ class FriensdViewController: UITableViewController {
         }
     }
     
-    @objc func tapprofile() {
-        navigationController?.pushViewController(FriensdViewController(), animated: true)
-    }
     
+    private extension FriensdViewController {
+        @objc func tapprofile() {
+            let animation = CATransaction()
+            animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+            animation.type = .moveIn
+            animation.duration = 3
+            navigationController?.view.layer.add(animation, forKey: nil)
+            navigationController?.pushViewController(ProfileViewController(name: "MyName", myAvatar: UIImage(systemName: "person") ), animated: true)
+        }
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         models.count
     }
