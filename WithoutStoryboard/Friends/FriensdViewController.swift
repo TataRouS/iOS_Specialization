@@ -33,35 +33,44 @@ class FriensdViewController: UITableViewController {
     }
     
     
-    private extension FriensdViewController {
-        @objc func tapprofile() {
-            let animation = CATransaction()
-            animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
-            animation.type = .moveIn
-            animation.duration = 3
-            navigationController?.view.layer.add(animation, forKey: nil)
-            navigationController?.pushViewController(ProfileViewController(name: "MyName", myAvatar: UIImage(systemName: "person") ), animated: true)
-        }
-    }
+    //    private extension FriensdViewController {
+    //        @objc func tapprofile() {
+    //            let animation = CATransition()
+    //            animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+    //            animation.type = .moveIn
+    //            animation.duration = 3
+    //            navigationController?.view.layer.add(animation, forKey: nil)
+    //            navigationController?.pushViewController(ProfileViewController(name: "MyName", myAvatar: UIImage(systemName: "person") ), animated: true)
+    //        }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         models.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //  TableViewCellFriends()
- //       let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath)
- //       let model = models[indexPath.row]
- //       guard let cell = cell as? TableViewCellFriends else {
+        //       let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath)
+        //       let model = models[indexPath.row]
+        //       guard let cell = cell as? TableViewCellFriends else {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as? TableViewCellFriends else {
-        return UITableViewCell()
+            return UITableViewCell()
         }
         
         let model = models[indexPath.row]
         cell.setupTextFriends(friend: model)
         return cell
         
-//        cell.setupTextFriends(friend: model)
-//        return cell
+        //        cell.setupTextFriends(friend: model)
+        //        return cell
     }
 }
-
+private extension FriensdViewController {
+    @objc func tapprofile() {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        animation.type = .moveIn
+        animation.duration = 3
+        navigationController?.view.layer.add(animation, forKey: nil)
+        navigationController?.pushViewController(ProfileViewController(name: "MyName", myAvatar: UIImage(systemName: "person") ), animated: true)
+    }
+}

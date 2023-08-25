@@ -87,7 +87,7 @@ final class NetworkService {
         }.resume()
     }
     
-    func getProfileInfo(completion: @escaping (Profile) -> Void) {
+    func getProfileInfo(completion: @escaping (ProfileModel) -> Void) {
         guard let url = URL(string: "https://api.vk.com/method/account.getProfileInfo?access_token=\(NetworkService.token)&v=5.131")
         else {
             return
@@ -100,7 +100,7 @@ final class NetworkService {
             do {
                 let profile = try
                 JSONDecoder().decode(ProfileModel.self, from: data)
-                completion(profile.response)
+                completion(profile)
                     print(profile)
                 } catch {
                 print(error)
