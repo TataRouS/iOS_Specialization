@@ -36,14 +36,14 @@ final class OrangeTheme: AppTheme {
 }
 
 final class YellowTheme: AppTheme {
-    var backgroundColor: UIColor = UIColor(red: 228/255, green: 231/255, blue: 255, alpha: 1)
+    var backgroundColor: UIColor = UIColor(red: 225/255, green: 225/255, blue: 102/255, alpha: 1)
     var textColor: UIColor = .blue
     var type: AllAppTheme = .yellow
 }
 
 final class GrayTheme: AppTheme {
-    var backgroundColor: UIColor = UIColor(red: 228/255, green: 231/255, blue: 255, alpha: 1)
-    var textColor: UIColor = .blue
+    var backgroundColor: UIColor = UIColor(red: 102/255, green: 102/255, blue: 102/255, alpha: 1)
+    var textColor: UIColor = .magenta
     var subtitleTextColor: UIColor = .magenta
-    var type: AllAppTheme = .yellow
+    var type: AllAppTheme = .gray
 }
