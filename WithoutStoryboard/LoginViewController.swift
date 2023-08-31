@@ -122,7 +122,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .magenta
+        view.backgroundColor = Theme.currentTheme.backgroundColor
         // Добавляем действие по клику на кнопку
         //button.addTarget(self, action: #selector(tap), for: .touchUpInside)
         // Do any additional setup after loading the view.
@@ -140,7 +140,7 @@ class LoginViewController: UIViewController {
     private func tap() {
         
         let tabBarController = UITabBarController()
-        let friendController = UINavigationController(rootViewController: FriensdViewController())
+        let friendController = UINavigationController(rootViewController: FriendsViewController())
         let groupController = UINavigationController(rootViewController: GroupsViewController())
         let photosController = UINavigationController(rootViewController: PhotosViewController(collectionViewLayout: UICollectionViewFlowLayout()))
         

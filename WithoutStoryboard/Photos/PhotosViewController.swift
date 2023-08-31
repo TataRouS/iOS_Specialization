@@ -15,7 +15,8 @@ class PhotosViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = Theme.currentTheme.backgroundColor
+        collectionView.backgroundColor = Theme.currentTheme.backgroundColor
         title = "Photos"
         
         collectionView.dataSource = self

@@ -16,6 +16,7 @@ struct GroupsModel: Decodable {
 struct DataGroups: Decodable {
     var description: String?
     var name: String
+    var id: Int
 }
 
 struct Groups: Decodable {
