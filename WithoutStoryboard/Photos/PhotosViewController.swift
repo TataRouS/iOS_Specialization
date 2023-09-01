@@ -32,7 +32,7 @@ class PhotosViewController: UICollectionViewController {
     }
   //      networkService.getPhotos()
     
-    
+
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         models.count
