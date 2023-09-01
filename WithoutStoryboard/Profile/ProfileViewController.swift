@@ -18,12 +18,15 @@ class ProfileViewController: UIViewController {
         return label
     }()
     private var profileImageView = UIImageView()
+    private var themeView = ThemeView()
+    private var isUserProfile: Bool
     
-    
-    init (name: String? = nil, myAvatar: UIImage? = nil){
+    init (name: String? = nil, myAvatar: UIImage? = nil, isUserProfile: Bool){
+        self.isUserProfile = isUserProfile
         super.init(nibName: nil, bundle: nil)
         nameLebel.text = name
         profileImageView.image = myAvatar
+        themeView.delegate = self
     }
     
     
@@ -34,22 +37,30 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Profile"
-        view.backgroundColor = .white
-        navigationController?.navigationBar.tintColor = .black
-        navigationController?.navigationBar.barTintColor = .darkGray
+        view.backgroundColor = Theme.currentTheme.backgroundColor
         setupViews()
-        
-        networkService.getProfileInfo() { [ weak self ] profile in
-            self?.updateData(model: profile)
+        if isUserProfile {
+            networkService.getProfileInfo { [weak self] profile in self?.updateData(model: profile)
+            }
+        } else {
+        themeView.isHidden = true
+            //
+//        title = "Profile"
+//        view.backgroundColor = .white
+//        navigationController?.navigationBar.tintColor = .black
+//        navigationController?.navigationBar.barTintColor = .darkGray
+//        setupViews()
+//
+//        networkService.getProfileInfo() { [ weak self ] profile in
+//            self?.updateData(model: profile)
         }
     }
     
     func updateData (model: ProfileModel?) {
         guard let model = model else {return}
         DispatchQueue.global().async {
-            if let url = URL(string: model.response.myAvatar ?? ""), let data = try?
-                Data(contentsOf: url)
+            if let url = URL(string: model.response.myAvatar ?? " "),
+               let data = try? Data(contentsOf: url)
             {
                 DispatchQueue.main.async {
                     self.profileImageView.image = UIImage(data: data)
@@ -67,13 +78,14 @@ class ProfileViewController: UIViewController {
     private func setupViews() {
         view.addSubview(nameLebel)
         view.addSubview(profileImageView)
+        view.addSubview(themeView)
         setupConstraints()
     }
     
     private func setupConstraints() {
         nameLebel.translatesAutoresizingMaskIntoConstraints = false
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        
+        themeView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             nameLebel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -86,9 +98,18 @@ class ProfileViewController: UIViewController {
             profileImageView.heightAnchor.constraint(equalTo:  nameLebel.heightAnchor),
             profileImageView.leadingAnchor.constraint(equalTo:  nameLebel.trailingAnchor, constant: 5),
             
+            themeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            themeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            themeView.topAnchor.constraint(equalTo: nameLebel.bottomAnchor, constant: 30),
+            themeView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
             
         ])
     }
 }
 
-
+extension ProfileViewController: ThemeViewDelegate {
+    func updateColor() {
+        view.backgroundColor = Theme.currentTheme.backgroundColor
+        nameLebel.textColor =  Theme.currentTheme.textColor
+    }
+}

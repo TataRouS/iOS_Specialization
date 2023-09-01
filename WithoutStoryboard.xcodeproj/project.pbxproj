@@ -14,7 +14,7 @@
 		BD10C95F2A7C0A270034025F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD10C95D2A7C0A270034025F /* LaunchScreen.storyboard */; };
 		BD717A502A8512B9004B1784 /* FriensdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A4F2A8512B9004B1784 /* FriensdViewController.swift */; };
 		BD717A522A851300004B1784 /* TableViewCellFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A512A851300004B1784 /* TableViewCellFriends.swift */; };
-		BD717A542A852041004B1784 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A532A852041004B1784 /* GroupViewController.swift */; };
+		BD717A542A852041004B1784 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A532A852041004B1784 /* GroupsViewController.swift */; };
 		BD717A562A85310D004B1784 /* TableViewCellGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A552A85310D004B1784 /* TableViewCellGroups.swift */; };
 		BD717A582A853707004B1784 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A572A853707004B1784 /* PhotosViewController.swift */; };
 		BD717A7A2A878EBB004B1784 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A792A878EBB004B1784 /* NetworkService.swift */; };
@@ -25,6 +25,11 @@
 		BD717A8F2A8A83A7004B1784 /* TableViewCellPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717A8E2A8A83A7004B1784 /* TableViewCellPhoto.swift */; };
 		BD717AEE2A915A9E004B1784 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717AED2A915A9E004B1784 /* ProfileViewController.swift */; };
 		BD717AF02A937587004B1784 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717AEF2A937587004B1784 /* ProfileModel.swift */; };
+		BD717B2B2A9E8D21004B1784 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717B2A2A9E8D21004B1784 /* DateHelper.swift */; };
+		BD717B2E2A9F40D3004B1784 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717B2D2A9F40D3004B1784 /* Theme.swift */; };
+		BD717B302A9F5763004B1784 /* ThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717B2F2A9F5763004B1784 /* ThemeView.swift */; };
+		BD717B332A9F741A004B1784 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD717B312A9F741A004B1784 /* DataModel.xcdatamodeld */; };
+		BD717B352A9F7562004B1784 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717B342A9F7562004B1784 /* FileCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +42,7 @@
 		BD10C9602A7C0A270034025F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD717A4F2A8512B9004B1784 /* FriensdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriensdViewController.swift; sourceTree = "<group>"; };
 		BD717A512A851300004B1784 /* TableViewCellFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellFriends.swift; sourceTree = "<group>"; };
-		BD717A532A852041004B1784 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		BD717A532A852041004B1784 /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		BD717A552A85310D004B1784 /* TableViewCellGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellGroups.swift; sourceTree = "<group>"; };
 		BD717A572A853707004B1784 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		BD717A792A878EBB004B1784 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -48,6 +53,11 @@
 		BD717A8E2A8A83A7004B1784 /* TableViewCellPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellPhoto.swift; sourceTree = "<group>"; };
 		BD717AED2A915A9E004B1784 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BD717AEF2A937587004B1784 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		BD717B2A2A9E8D21004B1784 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		BD717B2D2A9F40D3004B1784 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		BD717B2F2A9F5763004B1784 /* ThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeView.swift; sourceTree = "<group>"; };
+		BD717B322A9F741A004B1784 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		BD717B342A9F7562004B1784 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				BD10C9512A7C0A260034025F /* WithoutStoryboard */,
+				BD717B292A9E8CDD004B1784 /* CoreData */,
 				BD10C9502A7C0A260034025F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -80,6 +91,7 @@
 		BD10C9512A7C0A260034025F /* WithoutStoryboard */ = {
 			isa = PBXGroup;
 			children = (
+				BD717B2C2A9F40BF004B1784 /* Theme */,
 				BD717AF42A937F8D004B1784 /* Profile */,
 				BD717AF32A937F50004B1784 /* Groups */,
 				BD717AF22A937F31004B1784 /* Photos */,
@@ -129,7 +141,7 @@
 		BD717AF32A937F50004B1784 /* Groups */ = {
 			isa = PBXGroup;
 			children = (
-				BD717A532A852041004B1784 /* GroupViewController.swift */,
+				BD717A532A852041004B1784 /* GroupsViewController.swift */,
 				BD717A552A85310D004B1784 /* TableViewCellGroups.swift */,
 			);
 			path = Groups;
@@ -141,6 +153,25 @@
 				BD717AED2A915A9E004B1784 /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		BD717B292A9E8CDD004B1784 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				BD717B342A9F7562004B1784 /* FileCache.swift */,
+				BD717B2A2A9E8D21004B1784 /* DateHelper.swift */,
+				BD717B312A9F741A004B1784 /* DataModel.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		BD717B2C2A9F40BF004B1784 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				BD717B2D2A9F40D3004B1784 /* Theme.swift */,
+				BD717B2F2A9F5763004B1784 /* ThemeView.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,19 +245,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD717A8F2A8A83A7004B1784 /* TableViewCellPhoto.swift in Sources */,
-				BD717A542A852041004B1784 /* GroupViewController.swift in Sources */,
+				BD717A542A852041004B1784 /* GroupsViewController.swift in Sources */,
+				BD717B332A9F741A004B1784 /* DataModel.xcdatamodeld in Sources */,
 				BD717A892A892F3F004B1784 /* GroupsModel.swift in Sources */,
 				BD717A582A853707004B1784 /* PhotosViewController.swift in Sources */,
 				BD10C9572A7C0A260034025F /* LoginViewController.swift in Sources */,
 				BD717A522A851300004B1784 /* TableViewCellFriends.swift in Sources */,
 				BD717A7A2A878EBB004B1784 /* NetworkService.swift in Sources */,
+				BD717B302A9F5763004B1784 /* ThemeView.swift in Sources */,
 				BD717A8D2A8975E0004B1784 /* Constans.swift in Sources */,
 				BD10C9532A7C0A260034025F /* AppDelegate.swift in Sources */,
 				BD10C9552A7C0A260034025F /* SceneDelegate.swift in Sources */,
 				BD717A872A87B00A004B1784 /* PhotosModel.swift in Sources */,
 				BD717A8B2A892F60004B1784 /* FriendsModel.swift in Sources */,
+				BD717B2E2A9F40D3004B1784 /* Theme.swift in Sources */,
 				BD717AEE2A915A9E004B1784 /* ProfileViewController.swift in Sources */,
 				BD717A562A85310D004B1784 /* TableViewCellGroups.swift in Sources */,
+				BD717B352A9F7562004B1784 /* FileCache.swift in Sources */,
+				BD717B2B2A9E8D21004B1784 /* DateHelper.swift in Sources */,
 				BD717A502A8512B9004B1784 /* FriensdViewController.swift in Sources */,
 				BD717AF02A937587004B1784 /* ProfileModel.swift in Sources */,
 			);
@@ -436,6 +472,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BD717B312A9F741A004B1784 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BD717B322A9F741A004B1784 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = BD717B322A9F741A004B1784 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BD10C9472A7C0A260034025F /* Project object */;
 }
