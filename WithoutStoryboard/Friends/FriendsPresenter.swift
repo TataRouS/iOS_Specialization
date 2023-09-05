@@ -25,3 +25,6 @@ extension FriendsPresenter: FriendsPresentationLogic {
     func updateView(){
         
     }
+
+presentFriendsData:
+viewController.reloadData(data)
