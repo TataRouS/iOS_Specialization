@@ -8,23 +8,24 @@
 import Foundation
 
 protocol FriendsPresentationLogic {
-    
-}
-
-class FriendsPresenter: FriendsPresentationLogic {
-   
-//MARK: - External vars
-    weak var viewController: FriendsView
-
-
-//MARK: - Presentation logic
-
-extension FriendsPresenter: FriendsPresentationLogic {
-    
-}
-    func updateView(){
-        
+    func presentFriendsData(data: [DataFriend])
+        func presentErrorData(error: Error)
     }
 
-presentFriendsData:
-viewController.reloadData(data)
+class FriendsPresenter: FriendsPresentationLogic {
+    
+    //MARK: - External vars
+    weak var viewController: FriendsView
+}
+
+//MARK: - Presentation logic
+   
+    extension FriendsPresenter: FriendsPresentationLogic {
+        func presentFriendsData(data: [DataFriend]){
+            viewController.updateView(data)
+        }
+
+        func presentErrorData(error: Error){
+            viewController.showError(error)
+        }
+    }

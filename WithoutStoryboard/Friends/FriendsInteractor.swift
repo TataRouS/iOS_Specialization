@@ -14,56 +14,26 @@ protocol FriendsInteractor {
 class Interactor: FriendsInteractor  {
     
     private var presenter: FriendsPresentationLogic?
-    private let networkService = NetworkService()
-    private var fileCache = FileCache()
-    private let friendsPresenter = FriendsPresenter()
+    private weak var networkServiceProtocol: NetworkServiceProtocol?
+    private weak var fileCache: FileCache?
+    private weak var friendsPresentationLogic: FriendsPresentationLogic?
     private var models: [DataFriend] = []
     
-    init(presenter: FriendsPresentationLogic? = nil) {
-        self.presenter = presenter
+    init(presenter: FriendsPresentationLogic? = nil, friendsPresentationLogic: FriendsPresenter?, fileCache: FileCache?, networkServiceProtocol: NetworkServiceProtocol?) {
+        self.friendsPresentationLogic = friendsPresentationLogic
+        self.fileCache = fileCache
+        self.networkServiceProtocol = networkServiceProtocol
     }
-    
-    networkService.getFriends(completion: (Result<[DataFriend], Error>) -> Void)
     
     extension Interactor: FriendsInteractor {
         
         func startLoad() {
-            self.getFriends {[weak self] result in
+            networkServiceProtocol.getFriends {[weak self] result in
                 switch result {
-                case .success(_): presenter.presentFriendsData
-                    
-                case .failure(_):
-                    Interactor.showAlert2
-                }
-            }
-            
-            private  func getFriends(){
-                networkService.getFriends {[weak self] result in
-                    switch result {
-                    case .success(let friendsList):
-                        self?.models = friendsList
-                        self?.fileCache.addFriends(friends: friendsList)
-                        DispatchQueue.main.async {
-                            self?.tableView.reloadData()
-                        }
-                    case .failure(_):
-                        self?.models = self?.fileCache.fetchFriends() ?? []
-                        DispatchQueue.main.async {
-                            self?.showAlert()
-                        }
-                    }
-                    
-                }
-            }
-            
-            extension Interactor: FriendsInteractor {
-                func showAlert2(){
-                    let date = DateHelper.getDate(date: fileCache.fetchFriendDate())
-                    let alert = UIAlertController(title: "Не удалось получить данные",
-                                                  message: "Данные актуальны на \(date)",
-                                                  preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: nil))
-                    present(alert, animated: true, completion: nil)
+                case .success(let data):
+                    friendsPresentationLogic.presentFriendsData(data)
+                case .failure(let error):
+                    friendsPresentationLogic.presentErrorData(error)
                 }
             }
         }

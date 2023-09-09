@@ -36,6 +36,7 @@
 		BD717B5C2AA3C860004B1784 /* FriendsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717B5B2AA3C860004B1784 /* FriendsInteractor.swift */; };
 		BD717B5E2AA3CAFC004B1784 /* NewFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717B5D2AA3CAFC004B1784 /* NewFriendsViewController.swift */; };
 		BD717B752AA4BC22004B1784 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717B742AA4BC22004B1784 /* NetworkServiceTests.swift */; };
+		BD717B7D2AACDED9004B1784 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD717B7C2AACDED9004B1784 /* NetworkServiceProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		BD717B5D2AA3CAFC004B1784 /* NewFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFriendsViewController.swift; sourceTree = "<group>"; };
 		BD717B672AA4B4C4004B1784 /* WithoutStoryboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WithoutStoryboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD717B742AA4BC22004B1784 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
+		BD717B7C2AACDED9004B1784 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 				BD717A882A892F3F004B1784 /* GroupsModel.swift */,
 				BD717A8A2A892F60004B1784 /* FriendsModel.swift */,
 				BD717AEF2A937587004B1784 /* ProfileModel.swift */,
+				BD717B7C2AACDED9004B1784 /* NetworkServiceProtocol.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				BD717B302A9F5763004B1784 /* ThemeView.swift in Sources */,
 				BD717A8D2A8975E0004B1784 /* Constans.swift in Sources */,
 				BD10C9532A7C0A260034025F /* AppDelegate.swift in Sources */,
+				BD717B7D2AACDED9004B1784 /* NetworkServiceProtocol.swift in Sources */,
 				BD10C9552A7C0A260034025F /* SceneDelegate.swift in Sources */,
 				BD717A872A87B00A004B1784 /* PhotosModel.swift in Sources */,
 				BD717A8B2A892F60004B1784 /* FriendsModel.swift in Sources */,

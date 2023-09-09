@@ -7,30 +7,31 @@
 
 import UIKit
 
-protocol FriendsView: UITableViewController {
+protocol FriendsViewControllerProtocol {
+    func showError(error: Error)
+    func updateView(data: [DataFriend])
 }
 
-class NewFriendsViewController: UIViewController, FriendsView {
+class NewFriendsViewController: UIViewController {
     
     //MARK: - External vars
     
     //MARK: - Internal vars
-    private var interactor: FriendsInteractor?
+    //    private var interactor: FriendsInteractor?
     
-    init (interactor: FriendsInteractor){
-        self.interactor = interactor
-        super.init(nibName: nil, bundle: nil)
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has nit been implemented")
-    }
-    
-    
-    private let friendsPresenter = FriendsPresenter()
     private var models: [DataFriend] = []
     private var fileCache = FileCache()
+    
+    //    init (interactor: FriendsInteractor){
+    //        self.interactor = interactor
+    //        super.init(nibName: nil, bundle: nil)
+    //
+    //    }
+    //
+    //    required init?(coder: NSCoder) {
+    //        fatalError("init(coder:) has nit been implemented")
+    //    }
+    //
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +46,7 @@ class NewFriendsViewController: UIViewController, FriendsView {
         
         tableView.register(TableViewCellFriends.self, forCellReuseIdentifier: "FrienidsCell")
         
-        interactor?.startLoad()
-        
-        friendsPresenter.updateView()
+        //       interactor?.startLoad()
         
         
         refreshControl = UIRefreshControl()
@@ -80,17 +79,10 @@ class NewFriendsViewController: UIViewController, FriendsView {
                 
             }
             return cell
-            
-            return cell
         }
         
-        
-        
     }
-    
-reloadData:
-self.model = data
-dispatchqueue(tableview.reloaddata)
+
     
     private extension FriendsViewController {
         @objc func tapprofile() {
@@ -103,27 +95,49 @@ dispatchqueue(tableview.reloaddata)
             
         }
         
-        @objc func update() {
-            networkService.getFriends { [weak self] result in
-                switch result {
-                case .success(let friendsList):
-                    self?.models = friendsList
-                    self?.fileCache.addFriends(friends: friendsList)
-                    DispatchQueue.main.async {
-                        self?.tableView.reloadData()
-                    }
-                case .failure(_):
-                    self?.models = self?.fileCache.fetchFriends() ?? []
-                    DispatchQueue.main.async {
-                        self?.showAlert()
-                    }
-                }
-                DispatchQueue.main.async {
-                    self?.refreshControl?.endRefreshing()
-                }
+        @objc func updateView(friendsList: [DataFriend]) {
+            self.models = friendsList
+            self?.fileCache.addFriends(friends: friendsList)
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+            DispatchQueue.main.async {
+                self?.refreshControl?.endRefreshing()
+            }
+        }
+        
+        @objc func showError(error: Error) {
+            print("Error here: ", error)
+            self?.models = self?.fileCache.fetchFriends() ?? []
+            DispatchQueue.main.async {
+                self?.showAlert()
             }
         }
     }
+    
+    
+    
+    //        @objc func update() {
+    //            networkService.getFriends { [weak self] result in
+    //                switch result {
+    //                case .success(let friendsList):
+    //                    self?.models = friendsList
+    //                    self?.fileCache.addFriends(friends: friendsList)
+    //                    DispatchQueue.main.async {
+    //                        self?.tableView.reloadData()
+    //                    }
+    //                case .failure(_):
+    //                    self?.models = self?.fileCache.fetchFriends() ?? []
+    //                    DispatchQueue.main.async {
+    //                        self?.showAlert()
+    //                    }
+    //                }
+    //                DispatchQueue.main.async {
+    //                    self?.refreshControl?.endRefreshing()
+    //                }
+    //            }
+    //        }
+    //    }
     
     private extension FriendsViewController {
         func showAlert(){
@@ -138,20 +152,21 @@ dispatchqueue(tableview.reloaddata)
     
     
     // MARK: - methods of getFriends
+    //
+    //    func getFriendsSuccses(){
+    //        self?.models = friendsList
+    //        self?.fileCache.addFriends(friends: friendsList)
+    //        DispatchQueue.main.async {
+    //            self?.tableView.reloadData()
+    //        }
+    //    }
+    //        func getFriendsfailure (){
+    //            self?.models = friendsList
+    //            self?.fileCache.addFriends(friends: friendsList)
+    //            DispatchQueue.main.async {
+    //                self?.tableView.reloadData()
+    //            }
+    //        }
+    //    }
     
-    func getFriendsSuccses(){
-        self?.models = friendsList
-        self?.fileCache.addFriends(friends: friendsList)
-        DispatchQueue.main.async {
-            self?.tableView.reloadData()
-        }
-    }
-        func getFriendsfailure (){
-            self?.models = friendsList
-            self?.fileCache.addFriends(friends: friendsList)
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
-        }
-    }
-
+}
