@@ -14,9 +14,9 @@ protocol FriendsInteractor {
 class Interactor: FriendsInteractor  {
     
     private var presenter: FriendsPresentationLogic?
-    private weak var networkServiceProtocol: NetworkServiceProtocol?
+    private var networkServiceProtocol: NetworkServiceProtocol?
     private weak var fileCache: FileCache?
-    private weak var friendsPresentationLogic: FriendsPresentationLogic?
+    private var friendsPresentationLogic: FriendsPresentationLogic?
     private var models: [DataFriend] = []
     
     init(presenter: FriendsPresentationLogic? = nil, friendsPresentationLogic: FriendsPresenter?, fileCache: FileCache?, networkServiceProtocol: NetworkServiceProtocol?) {
@@ -25,17 +25,17 @@ class Interactor: FriendsInteractor  {
         self.networkServiceProtocol = networkServiceProtocol
     }
     
-    extension Interactor: FriendsInteractor {
+//    extension Interactor: FriendsInteractor {
         
         func startLoad() {
-            networkServiceProtocol.getFriends {[weak self] result in
+            networkServiceProtocol?.getFriends {[weak self] result in
                 switch result {
                 case .success(let data):
-                    friendsPresentationLogic.presentFriendsData(data)
+                    self?.friendsPresentationLogic?.presentFriendsData(data: data)
                 case .failure(let error):
-                    friendsPresentationLogic.presentErrorData(error)
+                    self?.friendsPresentationLogic?.presentErrorData(error: error)
                 }
-            }
+//            }
         }
     }
 }

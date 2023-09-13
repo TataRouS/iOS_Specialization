@@ -15,17 +15,19 @@ protocol FriendsPresentationLogic {
 class FriendsPresenter: FriendsPresentationLogic {
     
     //MARK: - External vars
-    weak var viewController: FriendsView
+    var viewController: FriendsViewControllerProtocol
+    
+    //MARK: - Presentation logic
+    
 }
-
-//MARK: - Presentation logic
-   
     extension FriendsPresenter: FriendsPresentationLogic {
         func presentFriendsData(data: [DataFriend]){
             viewController.updateView(data)
         }
-
+        
         func presentErrorData(error: Error){
             viewController.showError(error)
         }
     }
+
+
