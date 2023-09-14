@@ -15,27 +15,33 @@ class Interactor: FriendsInteractor  {
     
     private var presenter: FriendsPresentationLogic?
     private var networkServiceProtocol: NetworkServiceProtocol?
-    private weak var fileCache: FileCache?
+    private var fileCacheProtocol: FileCacheProtocol?
     private var friendsPresentationLogic: FriendsPresentationLogic?
     private var models: [DataFriend] = []
     
-    init(presenter: FriendsPresentationLogic? = nil, friendsPresentationLogic: FriendsPresenter?, fileCache: FileCache?, networkServiceProtocol: NetworkServiceProtocol?) {
+    
+    init(presenter: FriendsPresentationLogic? = nil, friendsPresentationLogic: FriendsPresenter?, fileCacheProtocol: FileCacheProtocol?, networkServiceProtocol: NetworkServiceProtocol?) {
         self.friendsPresentationLogic = friendsPresentationLogic
-        self.fileCache = fileCache
+        self.fileCacheProtocol = fileCacheProtocol
         self.networkServiceProtocol = networkServiceProtocol
     }
-    
-//    extension Interactor: FriendsInteractor {
         
-        func startLoad() {
-            networkServiceProtocol?.getFriends {[weak self] result in
-                switch result {
-                case .success(let data):
-                    self?.friendsPresentationLogic?.presentFriendsData(data: data)
-                case .failure(let error):
-                    self?.friendsPresentationLogic?.presentErrorData(error: error)
+       func startLoad() {
+           models = fileCacheProtocol?.fetchFriends() ?? []
+           friendsPresentationLogic?.presentFriendsData(data: models) // Отображаем данные из файл кэша, пока не получили новые от нетворк сервиса
+           networkServiceProtocol?.getFriends {[weak self] result in
+                      switch result {
+                      case .success(let data):
+                          self?.fileCacheProtocol?.addFriends(friends: data) //Сохранили новые данные при успешном их получении
+                          self?.fileCacheProtocol?.addFriendDate() //Сохранили последнюю дату успешной загрузки
+                          self?.friendsPresentationLogic?.presentFriendsData(data: data)
+                      case .failure(let error):
+                          self?.models = self?.fileCacheProtocol?.fetchFriends() ?? [] //Берем последние актуальные данные
+                          let date =  self?.fileCacheProtocol?.fetchFriendDate()
+                 //         let date = DateHelper.getDate(date: fileCacheProtocol?.fetchFriendDate()) //Берем последнюю дату успешной загрузки
+                          self?.friendsPresentationLogic?.presentErrorData(error: error, date:  date ?? Date())
                 }
-//            }
+           }
         }
     }
-}
+

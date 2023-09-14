@@ -8,8 +8,8 @@
 import UIKit
 
 protocol FriendsViewControllerProtocol {
-    func showError(error: Error)
-    func updateView(data: [DataFriend])
+    func showError(error: Error, date: Date)
+    func updateView(friendsList: [DataFriend])
 }
 
 class NewFriendsViewController:  UITableViewController {
@@ -20,7 +20,7 @@ class NewFriendsViewController:  UITableViewController {
     
     private var interactor: FriendsInteractor?
     private var models: [DataFriend] = []
-    private var fileCache = FileCache()
+    //  private var fileCache = FileCache()
     
     init (interactor: FriendsInteractor){
         self.interactor = interactor
@@ -35,7 +35,7 @@ class NewFriendsViewController:  UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        models = fileCache.fetchFriends()
+        //      models = fileCache.fetchFriends()
         tableView.reloadData()
         title = "Friends"
         view.backgroundColor = Theme.currentTheme.backgroundColor
@@ -66,107 +66,142 @@ class NewFriendsViewController:  UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as? TableViewCellFriends else {
-                return UITableViewCell()
-            }
-            
-            let model = models[indexPath.row]
-            cell.setupTextFriends(friend: model)
-            cell.tap = { [weak self] text, avatar in
-                self?.navigationController?
-                    .pushViewController(ProfileViewController(name: text, myAvatar: avatar, isUserProfile: false), animated: true)
-                
-            }
-            return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as? TableViewCellFriends else {
+            return UITableViewCell()
         }
         
+        let model = models[indexPath.row]
+        cell.setupTextFriends(friend: model)
+        cell.tap = { [weak self] text, avatar in
+            self?.navigationController?
+                .pushViewController(ProfileViewController(name: text, myAvatar: avatar, isUserProfile: false), animated: true)
+            
+        }
+        return cell
+    }
+    
+}
+
+
+ extension NewFriendsViewController: FriendsViewControllerProtocol {
+    @objc func tapprofile() {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        animation.type = .moveIn
+        animation.duration = 3
+        navigationController?.view.layer.add(animation, forKey: nil)
+        navigationController?.pushViewController(ProfileViewController(isUserProfile: true), animated: false)
+        
+    }
+    
+    func updateView(friendsList: [DataFriend]) {
+        self.models = friendsList
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        DispatchQueue.main.async {
+            self.refreshControl?.endRefreshing()
+        }
     }
 
-    
-    private extension NewFriendsViewController {
-        @objc func tapprofile() {
-            let animation = CATransition()
-            animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
-            animation.type = .moveIn
-            animation.duration = 3
-            navigationController?.view.layer.add(animation, forKey: nil)
-            navigationController?.pushViewController(ProfileViewController(isUserProfile: true), animated: false)
-            
-        }
-        
-        func updateView(friendsList: [DataFriend]) {
-            self.models = friendsList
-            self.fileCache.addFriends(friends: friendsList)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-            DispatchQueue.main.async {
-                self.refreshControl?.endRefreshing()
-            }
-        }
-        
-       func showError(error: Error) {
-            print("Error here: ", error)
-            self.models = self.fileCache.fetchFriends() ?? []
-            DispatchQueue.main.async {
-                self.showAlert()
-            }
-        }
-        
-        
-        @objc func update() {
-            updateView(friendsList: self.models)
-        }
-    }
-    //                networkService.getFriends { [weak self] result in
-    //                    switch result {
-    //                    case .success(let friendsList):
-    //                        self?.models = friendsList
-    //                        self?.fileCache.addFriends(friends: friendsList)
-    //                        DispatchQueue.main.async {
-    //                            self?.tableView.reloadData()
-    //                        }
-    //                    case .failure(_):
-    //                        self?.models = self?.fileCache.fetchFriends() ?? []
-    //                        DispatchQueue.main.async {
-    //                            self?.showAlert()
-    //                        }
-    //                    }
-    //                    DispatchQueue.main.async {
-    //                        self?.refreshControl?.endRefreshing()
-    //                    }
-    //                }
-    //            }
-    //}
-    
-    private extension NewFriendsViewController {
-        func showAlert(){
-            let date = DateHelper.getDate(date: fileCache.fetchFriendDate())
-            let alert = UIAlertController(title: "Не удалось получить данные",
-                                          message: "Данные актуальны на \(date)",
-                                          preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
+    func showError(error: Error, date: Date) {
+        print("Error here: ", error)
+        DispatchQueue.main.async {
+            self.showAlert(date: date)
         }
     }
     
-    
-    // MARK: - methods of getFriends
-    //
-    //    func getFriendsSuccses(){
-    //        self?.models = friendsList
-    //        self?.fileCache.addFriends(friends: friendsList)
-    //        DispatchQueue.main.async {
-    //            self?.tableView.reloadData()
-    //        }
-    //    }
-    //        func getFriendsfailure (){
-    //            self?.models = friendsList
-    //            self?.fileCache.addFriends(friends: friendsList)
-    //            DispatchQueue.main.async {
-    //                self?.tableView.reloadData()
-    //            }
-    //        }
-    //    }
-    
+    @objc func update() {
+        updateView(friendsList: self.models)
+    }
+}
+
+private extension NewFriendsViewController {
+    func showAlert(date: Date){
+        let alert = UIAlertController(title: "Не удалось получить данные",
+                                      message: "Данные актуальны на \(date)",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+}
+
+//    func updateView(friendsList: [DataFriend]) {
+//        self.models = friendsList
+//        self.fileCache.addFriends(friends: friendsList)
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//        }
+//        DispatchQueue.main.async {
+//            self.refreshControl?.endRefreshing()
+//        }
+//    }
+//
+//    func showError(error: Error) {
+//        print("Error here: ", error)
+//        self.models = self.fileCache.fetchFriends() ?? []
+//        DispatchQueue.main.async {
+//            self.showAlert()
+//        }
+//    }
+
+
+//            @objc func update() {
+//                updateView(friendsList: self.models)
+//            }
+
+
+//                networkService.getFriends { [weak self] result in
+//                    switch result {
+//                    case .success(let friendsList):
+//                        self?.models = friendsList
+//                        self?.fileCache.addFriends(friends: friendsList)
+//                        DispatchQueue.main.async {
+//                            self?.tableView.reloadData()
+//                        }
+//                    case .failure(_):
+//                        self?.models = self?.fileCache.fetchFriends() ?? []
+//                        DispatchQueue.main.async {
+//                            self?.showAlert()
+//                        }
+//                    }
+//                    DispatchQueue.main.async {
+//                        self?.refreshControl?.endRefreshing()
+//                    }
+//                }
+//            }
+//}
+
+
+
+//    private extension NewFriendsViewController {
+//        func showAlert(){
+//            let date = DateHelper.getDate(date: fileCache.fetchFriendDate())
+//            let alert = UIAlertController(title: "Не удалось получить данные",
+//                                          message: "Данные актуальны на \(date)",
+//                                          preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: nil))
+//            present(alert, animated: true, completion: nil)
+//        }
+//    }
+
+
+// MARK: - methods of getFriends
+//
+//    func getFriendsSuccses(){
+//        self?.models = friendsList
+//        self?.fileCache.addFriends(friends: friendsList)
+//        DispatchQueue.main.async {
+//            self?.tableView.reloadData()
+//        }
+//    }
+//        func getFriendsfailure (){
+//            self?.models = friendsList
+//            self?.fileCache.addFriends(friends: friendsList)
+//            DispatchQueue.main.async {
+//                self?.tableView.reloadData()
+//            }
+//        }
+//    }
+
 

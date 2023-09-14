@@ -9,8 +9,8 @@ import Foundation
 
 protocol FriendsPresentationLogic {
     func presentFriendsData(data: [DataFriend])
-        func presentErrorData(error: Error)
-    }
+    func presentErrorData(error: Error, date: Date)
+}
 
 class FriendsPresenter: FriendsPresentationLogic {
     
@@ -18,16 +18,18 @@ class FriendsPresenter: FriendsPresentationLogic {
     var viewController: FriendsViewControllerProtocol
     
     //MARK: - Presentation logic
-    
-}
-    extension FriendsPresenter: FriendsPresentationLogic {
-        func presentFriendsData(data: [DataFriend]){
-            viewController.updateView(data)
-        }
-        
-        func presentErrorData(error: Error){
-            viewController.showError(error)
-        }
+    init(viewController: FriendsViewControllerProtocol) {
+        self.viewController = viewController
     }
+    
+    func presentFriendsData(data: [DataFriend]){
+        viewController.updateView(friendsList: data)
+    }
+    
+    func presentErrorData(error: Error, date: Date ){
+        viewController.showError(error: error, date: date)
+    }
+}
+
 
 
