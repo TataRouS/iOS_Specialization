@@ -7,21 +7,22 @@
 
 @testable import WithoutStoryboard
 
+enum MyError: Error {
+    case customError
+}
+
 final class NetworkServiceMock: NetworkServiceProtocol {
     
-    var testData: DataFriend
-    var isSuccess: boolean
+    var  testData: [DataFriend] = []
+    var  isSuccess = false
     
-    init(testData: [DataFriend], isSuccess: boolean) {
-        self.testData = testData
-        self.isSuccess = isSuccess
-    }
+    
     func getFriends(completion: @escaping (Result<[DataFriend], Error>) -> Void) -> Void {
         if(isSuccess){
             completion(.success(testData))
         }
         else {
-            completion(.failure("error"))
+            completion(.failure(MyError.customError))
         }
     }
 }

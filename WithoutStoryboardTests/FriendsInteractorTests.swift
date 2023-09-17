@@ -4,7 +4,7 @@
 //
 //  Created by Nata Kuznetsova on 15.09.2023.
 //
-
+import Foundation
 import XCTest
 @testable import WithoutStoryboard
 
@@ -12,7 +12,7 @@ final class FriendsInteractorTests: XCTestCase {
     
     private var interactor: Interactor!
     private var fileCacheProtocol: FileCacheSpy!
-    private var networkServiceProtocol: NetworkServiceSpy!
+    private var networkServiceProtocol: NetworkServiceMock!
     private var presenter: PresenterSpy!
     
     
@@ -21,7 +21,7 @@ final class FriendsInteractorTests: XCTestCase {
         presenter = PresenterSpy()
         fileCacheProtocol = FileCacheSpy()
         networkServiceProtocol = NetworkServiceMock()
-        interactor = Interactor(presenter: presenter, fileCacheProtocol: fileCacheProtocol, networkServiceProtocol: networkServiceProtocol))
+        interactor = Interactor(presenter: presenter, fileCacheProtocol: fileCacheProtocol, networkServiceProtocol: networkServiceProtocol)
     }
     
     
@@ -34,29 +34,19 @@ final class FriendsInteractorTests: XCTestCase {
     }
     
     func testGetFriendsSuccessStartLoadCalls(){
-        presenter = PresenterSpy()
-        fileCacheProtocol = FileCacheSpy()
-        networkServiceProtocol = NetworkServiceMock(testData: [], isSuccess: true)
-        interactor = Interactor(presenter: presenter, fileCacheProtocol: fileCacheProtocol, networkServiceProtocol: networkServiceProtocol))
-        
-        
+        networkServiceProtocol.isSuccess = true
         interactor.startLoad()
-        
-        XCTAssertTrue(FileCacheSpy.isAddFriendsWasCalled, "Метод AddFriendsFileCahe не вызван")
-        XCTAssertTrue(FileCacheSpy.isAddFriendDateWasCalled, "Метод AddFriendDateFileCahe не вызван")
+        XCTAssertTrue(fileCacheProtocol.isAddFriendsWasCalled, "Метод AddFriendsFileCahe не вызван")
+        XCTAssertTrue(fileCacheProtocol.isAddFriendDateWasCalled, "Метод AddFriendDateFileCahe не вызван")
         XCTAssertTrue(presenter.isPresentFriendsDataWasCalled, "Метод PresentFriendsData не вызван")
     }
     
     
     func testGetFriendsFailureStartLoadCalls(){
-        presenter = PresenterSpy()
-        fileCacheProtocol = FileCacheSpy()
-        networkServiceProtocol = NetworkServiceMock(testData: [], isSuccess: false)
-        interactor = Interactor(presenter: presenter, fileCacheProtocol: fileCacheProtocol, networkServiceProtocol: networkServiceProtocol))
-        
+        networkServiceProtocol.isSuccess = false
         interactor.startLoad()
-        XCTAssertTrue(FileCacheSpy.isFetchFriendsWasCalled, "Метод FetchFriendsFileCahe не вызван")
-        XCTAssertTrue(FileCacheSpy.isFetchFriendDateWasCalled, "Метод FetchFriendDateFileCahe не вызван")
+        XCTAssertTrue(fileCacheProtocol.isFetchFriendsWasCalled, "Метод FetchFriendsFileCahe не вызван")
+        XCTAssertTrue(fileCacheProtocol.isFetchFriendDateWasCalled, "Метод FetchFriendDateFileCahe не вызван")
         XCTAssertTrue(presenter.isPresentErrorDataWasCalled, "Метод PresentErrorData не вызван" )
     }
     

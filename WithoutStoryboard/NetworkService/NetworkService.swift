@@ -65,62 +65,62 @@ final class NetworkService: NetworkServiceProtocol {
                 completion(.failure(error))
                 return
             }
-                do {
-                    let groups = try
-                    JSONDecoder().decode(GroupsModel.self, from: data)
-                    completion(.success(groups))
-                    print(groups)
-            
-                } catch {
-                    completion(.failure(error))
-                    print(error)
-                }
-            } .resume()
-        }
-        
-        func getPhotos(completion: @escaping ([DataPhotos]) -> Void) {
-            guard let url = URL(string: "https://api.vk.com/method/photos.get?fields=bdate&access_token=\(NetworkService.token)&v=5.131&album_id=profile")
-            else {
-                return
+            do {
+                let groups = try
+                JSONDecoder().decode(GroupsModel.self, from: data)
+                completion(.success(groups))
+                print(groups)
+                
+            } catch {
+                completion(.failure(error))
+                print(error)
             }
-            
-            session.dataTask(with: url) { (data, _, error) in
-                guard let data else {
-                    return
-                }
-                do {
-                    let imageURL = try
-                    JSONDecoder().decode(PhotosModel.self, from: data)
-                    completion(imageURL.response.items)
-                    print(imageURL)
-                } catch {
-                    print(error)
-                }
-            }.resume()
-        }
-        
-        func getProfileInfo(completion: @escaping (ProfileModel) -> Void) {
-            guard let url = URL(string: "https://api.vk.com/method/account.getProfileInfo?access_token=\(NetworkService.token)&v=5.131")
-            else {
-                return
-            }
-            
-            session.dataTask(with: url) { (data, _, error) in
-                guard let data else {
-                    return
-                }
-                do {
-                    let profile = try
-                    JSONDecoder().decode(ProfileModel.self, from: data)
-                    completion(profile)
-                    print(profile)
-                } catch {
-                    print(error)
-                }
-            }.resume()
-        }
+        } .resume()
     }
     
+    func getPhotos(completion: @escaping ([DataPhotos]) -> Void) {
+        guard let url = URL(string: "https://api.vk.com/method/photos.get?fields=bdate&access_token=\(NetworkService.token)&v=5.131&album_id=profile")
+        else {
+            return
+        }
+        
+        session.dataTask(with: url) { (data, _, error) in
+            guard let data else {
+                return
+            }
+            do {
+                let imageURL = try
+                JSONDecoder().decode(PhotosModel.self, from: data)
+                completion(imageURL.response.items)
+                print(imageURL)
+            } catch {
+                print(error)
+            }
+        }.resume()
+    }
+    
+    func getProfileInfo(completion: @escaping (ProfileModel) -> Void) {
+        guard let url = URL(string: "https://api.vk.com/method/account.getProfileInfo?access_token=\(NetworkService.token)&v=5.131")
+        else {
+            return
+        }
+        
+        session.dataTask(with: url) { (data, _, error) in
+            guard let data else {
+                return
+            }
+            do {
+                let profile = try
+                JSONDecoder().decode(ProfileModel.self, from: data)
+                completion(profile)
+                print(profile)
+            } catch {
+                print(error)
+            }
+        }.resume()
+    }
+}
+
 
 //final class NetworkService {
 //
@@ -235,5 +235,5 @@ final class NetworkService: NetworkServiceProtocol {
 //            }.resume()
 //        }
 //    }
-    
+
 

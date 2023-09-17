@@ -5,9 +5,12 @@
 //  Created by Nata Kuznetsova on 16.09.2023.
 //
 
+import Foundation
+import CoreData
 @testable import WithoutStoryboard
 
 final class FileCacheSpy: FileCacheProtocol {
+ 
     
     // func delete(object: NSManagedObject)
     //    func addGroups(groups: [DataGroups])
@@ -31,6 +34,7 @@ final class FileCacheSpy: FileCacheProtocol {
     
     func fetchFriends() -> [DataFriend]{
         isFetchFriendsWasCalled = true
+        return []
     }
     
     func addFriendDate(){
@@ -39,5 +43,26 @@ final class FileCacheSpy: FileCacheProtocol {
     
     func fetchFriendDate() -> Date?{
         isFetchFriendDateWasCalled = true
+        return Date()
     }
+    
+    func delete(object: NSManagedObject) {
+    }
+    
+    func addGroups(groups: [WithoutStoryboard.DataGroups]) {
+      
+    }
+    
+    func fetchGroups() -> [WithoutStoryboard.DataGroups] {
+        return []
+    }
+    
+    func addGroupDate() {
+    
+    }
+    
+    func fetchGroupDate() -> Date? {
+        return Date()
+    }
+    
 }

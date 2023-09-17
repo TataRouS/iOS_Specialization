@@ -68,24 +68,24 @@ class GroupsViewController: UITableViewController {
     }
     
     
-        func getGroups(){
-            networkService.getGroups {[weak self] result in
-                switch result {
-                case .success(let groups):
-                    self?.models = groups.response.items
-                    self?.fileCache.addGroups(groups: groups.response.items)
-                    DispatchQueue.main.async {
-                        self?.tableView.reloadData()
-                    }
-                case .failure(_):
-                    self?.models = self?.fileCache.fetchGroups() ?? []
-                    DispatchQueue.main.async {
-                        self?.showAlert()
-                    }
+    func getGroups(){
+        networkService.getGroups {[weak self] result in
+            switch result {
+            case .success(let groups):
+                self?.models = groups.response.items
+                self?.fileCache.addGroups(groups: groups.response.items)
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
                 }
-    
+            case .failure(_):
+                self?.models = self?.fileCache.fetchGroups() ?? []
+                DispatchQueue.main.async {
+                    self?.showAlert()
+                }
             }
+            
         }
+    }
     
     
     @objc func update() {

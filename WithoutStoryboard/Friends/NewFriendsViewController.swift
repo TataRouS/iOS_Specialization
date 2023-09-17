@@ -83,7 +83,7 @@ class NewFriendsViewController:  UITableViewController {
 }
 
 
- extension NewFriendsViewController: FriendsViewControllerProtocol {
+extension NewFriendsViewController: FriendsViewControllerProtocol {
     @objc func tapprofile() {
         let animation = CATransition()
         animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
@@ -103,7 +103,7 @@ class NewFriendsViewController:  UITableViewController {
             self.refreshControl?.endRefreshing()
         }
     }
-
+    
     func showError(error: Error, date: Date) {
         print("Error here: ", error)
         DispatchQueue.main.async {

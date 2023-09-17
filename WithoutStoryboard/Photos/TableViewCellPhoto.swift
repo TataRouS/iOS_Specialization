@@ -8,7 +8,7 @@
 import UIKit
 
 final class PhotoCell: UICollectionViewCell {
-
+    
     private let photoView = UIImageView(image: UIImage (systemName: "person" ))
     
     override init (frame: CGRect) {

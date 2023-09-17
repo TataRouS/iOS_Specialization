@@ -15,7 +15,7 @@ protocol FriendsPresentationLogic {
 class FriendsPresenter: FriendsPresentationLogic {
     
     //MARK: - External vars
-  weak var viewController: FriendsViewControllerProtocol?
+    weak var viewController: FriendsViewControllerProtocol?
     
     //MARK: - Presentation logic
     init(viewController: FriendsViewControllerProtocol) {
