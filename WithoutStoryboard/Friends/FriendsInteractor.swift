@@ -11,17 +11,16 @@ import UIKit
 protocol FriendsInteractor {
     func startLoad()
 }
-class Interactor: FriendsInteractor  {
+final class Interactor: FriendsInteractor  {
     
-    private var presenter: FriendsPresentationLogic?
     private var networkServiceProtocol: NetworkServiceProtocol?
     private var fileCacheProtocol: FileCacheProtocol?
     private var friendsPresentationLogic: FriendsPresentationLogic?
     private var models: [DataFriend] = []
     
     
-    init(presenter: FriendsPresentationLogic? = nil, friendsPresentationLogic: FriendsPresenter?, fileCacheProtocol: FileCacheProtocol?, networkServiceProtocol: NetworkServiceProtocol?) {
-        self.friendsPresentationLogic = friendsPresentationLogic
+    init(presenter: FriendsPresentationLogic?, fileCacheProtocol: FileCacheProtocol?, networkServiceProtocol: NetworkServiceProtocol?) {
+        self.friendsPresentationLogic = presenter
         self.fileCacheProtocol = fileCacheProtocol
         self.networkServiceProtocol = networkServiceProtocol
     }

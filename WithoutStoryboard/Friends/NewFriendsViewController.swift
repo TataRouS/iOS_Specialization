@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol FriendsViewControllerProtocol {
+protocol FriendsViewControllerProtocol: AnyObject {
     func showError(error: Error, date: Date)
     func updateView(friendsList: [DataFriend])
 }
@@ -18,7 +18,7 @@ class NewFriendsViewController:  UITableViewController {
     
     //MARK: - Internal vars
     
-    private var interactor: FriendsInteractor?
+    private  var interactor: FriendsInteractor?
     private var models: [DataFriend] = []
     //  private var fileCache = FileCache()
     

@@ -15,7 +15,7 @@ protocol FriendsPresentationLogic {
 class FriendsPresenter: FriendsPresentationLogic {
     
     //MARK: - External vars
-    var viewController: FriendsViewControllerProtocol
+  weak var viewController: FriendsViewControllerProtocol?
     
     //MARK: - Presentation logic
     init(viewController: FriendsViewControllerProtocol) {
@@ -23,11 +23,11 @@ class FriendsPresenter: FriendsPresentationLogic {
     }
     
     func presentFriendsData(data: [DataFriend]){
-        viewController.updateView(friendsList: data)
+        viewController?.updateView(friendsList: data)
     }
     
     func presentErrorData(error: Error, date: Date ){
-        viewController.showError(error: error, date: date)
+        viewController?.showError(error: error, date: date)
     }
 }
 
