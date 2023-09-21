@@ -31,9 +31,9 @@ class PhotosViewController: UICollectionViewController {
             }
         }
     }
-  //      networkService.getPhotos()
+    //      networkService.getPhotos()
     
-
+    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         models.count

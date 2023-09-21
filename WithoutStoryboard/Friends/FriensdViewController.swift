@@ -33,7 +33,7 @@ class FriendsViewController: UITableViewController {
         refreshControl?.addTarget(self, action: #selector(update), for: .valueChanged)
         getFriends()
     }
-        
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.backgroundColor = Theme.currentTheme.backgroundColor
@@ -41,13 +41,13 @@ class FriendsViewController: UITableViewController {
         tableView.reloadData()
     }
     
-//        networkService.getFriends() { [ weak self ] friendsList in
-//            self?.models = friendsList
-//            DispatchQueue.main.async {
-//                self?.tableView.reloadData()
-//            }
-//        }
-//    }
+    //        networkService.getFriends() { [ weak self ] friendsList in
+    //            self?.models = friendsList
+    //            DispatchQueue.main.async {
+    //                self?.tableView.reloadData()
+    //            }
+    //        }
+    //    }
     
     
     //    private extension FriensdViewController {
@@ -140,15 +140,15 @@ private extension FriendsViewController {
         }
     }
 }
-    
-    private extension FriendsViewController {
-        func showAlert(){
-            let date = DateHelper.getDate(date: fileCache.fetchFriendDate())
-            let alert = UIAlertController(title: "Не удалось получить данные",
-                                          message: "Данные актуальны на \(date)",
-                                          preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-        }
+
+private extension FriendsViewController {
+    func showAlert(){
+        let date = DateHelper.getDate(date: fileCache.fetchFriendDate())
+        let alert = UIAlertController(title: "Не удалось получить данные",
+                                      message: "Данные актуальны на \(date)",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
+}
 

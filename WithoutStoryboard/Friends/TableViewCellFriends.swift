@@ -170,10 +170,10 @@ final class TableViewCellFriends: UITableViewCell {
         super.prepareForReuse()
         text.text = nil
     }
-
+    
     @objc private func cellClick() {
         tap?(text.text, circle.image)
     }
-
+    
 }
 

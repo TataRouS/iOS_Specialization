@@ -43,16 +43,16 @@ class ProfileViewController: UIViewController {
             networkService.getProfileInfo { [weak self] profile in self?.updateData(model: profile)
             }
         } else {
-        themeView.isHidden = true
+            themeView.isHidden = true
             //
-//        title = "Profile"
-//        view.backgroundColor = .white
-//        navigationController?.navigationBar.tintColor = .black
-//        navigationController?.navigationBar.barTintColor = .darkGray
-//        setupViews()
-//
-//        networkService.getProfileInfo() { [ weak self ] profile in
-//            self?.updateData(model: profile)
+            //        title = "Profile"
+            //        view.backgroundColor = .white
+            //        navigationController?.navigationBar.tintColor = .black
+            //        navigationController?.navigationBar.barTintColor = .darkGray
+            //        setupViews()
+            //
+            //        networkService.getProfileInfo() { [ weak self ] profile in
+            //            self?.updateData(model: profile)
         }
     }
     
